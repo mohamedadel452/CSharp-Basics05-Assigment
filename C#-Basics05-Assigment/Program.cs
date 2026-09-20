@@ -83,6 +83,16 @@ namespace Session5Assignment
             Console.WriteLine();
             #endregion
 
+            #region Q6: Int to Enum (Casting)
+            Console.WriteLine("=== Q6: Int to Enum ===");
+            // Given int genreNumber = 1;, cast it into a Genre value and print the result.
+            int genreNumber = 1;
+            Genre castedGenre = (Genre)genreNumber;
+            // Since 1 maps to NonFiction, it should print NonFiction.
+            Console.WriteLine($"Integer {genreNumber} casted to Enum is: {castedGenre}");
+            Console.WriteLine();
+            #endregion
+
 
 
 

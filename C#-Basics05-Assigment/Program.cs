@@ -93,6 +93,17 @@ namespace Session5Assignment
             Console.WriteLine();
             #endregion
 
+            #region Q7: Enum to String
+            Console.WriteLine("=== Q7: Enum to String ===");
+            // Given Genre genre = Genre.Fiction;, convert it into a string using ToString() and print it.
+            Genre genre1 = Genre.Fiction;
+            string genreStr = genre1.ToString();
+            Console.WriteLine($"Enum Genre.Fiction as string: '{genreStr}'");
+            Console.WriteLine();
+            #endregion
+
+
+
 
 
 

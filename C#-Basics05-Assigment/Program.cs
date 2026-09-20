@@ -31,6 +31,18 @@ namespace Session5Assignment
             #endregion
 
 
+            #region Q2: Internal Modifier
+            Console.WriteLine("=== Q2: Internal Modifier ===");
+            // Print it from Main. Does it compile? Why?
+            Console.WriteLine($"Copies in stock: {myBook.copiesInStock}");
+            // WHY DOES IT COMPILE? Because 'internal' restricts access to the same Assembly.
+      
+            Console.WriteLine();
+            #endregion
+
+
+
+
 
 
 

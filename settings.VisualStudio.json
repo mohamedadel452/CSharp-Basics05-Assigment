@@ -1,0 +1,10 @@
+/* Visual Studio Settings File */
+{
+  "intellicode.general.csharpRefactorings": true,
+  "textEditor.codeCompletions.general.codeCompletionsProviders": [
+    "copilot-completions",
+    "copilot-nes",
+    "intellicode"
+  ],
+  "languages.razor.advanced.showAllCSharpCodeActions": false
+}

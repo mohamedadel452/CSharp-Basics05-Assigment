@@ -102,6 +102,31 @@ namespace Session5Assignment
             Console.WriteLine();
             #endregion
 
+            #region Q8: String to Enum (Enum.Parse)
+            Console.WriteLine("=== Q8: String to Enum (Enum.Parse) ===");
+            // Given string genreText = "Science";, convert it into a Genre value using Enum.Parse()
+
+
+            string genreText = "Science";
+            // Enum.Parse returns an 'object', so we must cast it to (Genre)
+            Genre parsedGenre = (Genre)Enum.Parse<Genre>( genreText);
+            Console.WriteLine($"String '{genreText}' parsed to Enum: {parsedGenre}");
+
+
+            #region prov that Enum.Parse is bad choise
+            //But Enum Parse is will push exception if the parse is not work sucsessful
+            string genreText2 = "science";
+            // Enum.Parse returns an 'object', so we must cast it to (Genre)
+            Console.WriteLine();
+            Genre parsedGenre2 = (Genre)Enum.Parse<Genre>(genreText2);
+            Console.WriteLine($"String '{genreText2}' parsed to Enum: {parsedGenre2}");
+            #endregion
+
+            Console.WriteLine();
+            #endregion
+
+
+
 
 
 

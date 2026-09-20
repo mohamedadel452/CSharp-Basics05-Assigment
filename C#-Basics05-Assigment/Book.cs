@@ -1,6 +1,7 @@
 ﻿
-
-
+// i use this namespace here to can use the Genre Enum 
+namespace Session5Assignment
+    { 
     class Book
     {
 
@@ -23,8 +24,15 @@
     // Q3: Add a public string Title; field to Book.
     // Access Modifier 'public' means it is accessible from absolutely ANYWHERE, even from other projects referencing this one.
     public string Title;
+        #endregion
+
+    #region Q4 
+        // Q4: Add a Genre property to Book
+        public Genre BookGenre;
     #endregion
 
+
+}
 
 }
 

@@ -4,6 +4,19 @@
 namespace Session5Assignment
 
 {
+
+    // Genre Enum 
+    #region Q4:Enum
+    enum Genre
+    {
+        Fiction,     // By default, this is 0
+        NonFiction,  // This is 1
+        Science      // This is 2
+    }
+    #endregion
+
+
+
     class Program
     {
         static void Main(string[] args)
@@ -44,6 +57,14 @@ namespace Session5Assignment
             // Set it and print it from Main.
             myBook.Title = "Clean Architecture";
             Console.WriteLine($"Book Title: {myBook.Title}");
+            Console.WriteLine();
+            #endregion
+
+            #region Q4: Enum Property Assignment
+            Console.WriteLine("=== Q4: Enum Property ===");
+            // assign it Genre.Science, and print it.
+            myBook.BookGenre = Genre.Science;
+            Console.WriteLine($"Book Genre: {myBook.BookGenre}");
             Console.WriteLine();
             #endregion
 

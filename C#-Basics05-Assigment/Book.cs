@@ -17,7 +17,13 @@
     // Access Modifier 'internal' means this field is accessible from ANYWHERE within the SAME Assembly (.dll or .exe).
     // Since Book class and Program class are in the same project (same Assembly), this will compile successfully.
     internal int copiesInStock = 5;
-    #endregion 
+    #endregion
+
+    #region Q3
+    // Q3: Add a public string Title; field to Book.
+    // Access Modifier 'public' means it is accessible from absolutely ANYWHERE, even from other projects referencing this one.
+    public string Title;
+    #endregion
 
 
 }

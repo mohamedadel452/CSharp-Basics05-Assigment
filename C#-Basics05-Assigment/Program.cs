@@ -113,15 +113,35 @@ namespace Session5Assignment
             Console.WriteLine($"String '{genreText}' parsed to Enum: {parsedGenre}");
 
 
-            #region prov that Enum.Parse is bad choise
-            //But Enum Parse is will push exception if the parse is not work sucsessful
-            string genreText2 = "science";
-            // Enum.Parse returns an 'object', so we must cast it to (Genre)
+            //#region prov that Enum.Parse is bad choise
+            ////But Enum Parse is will push exception if the parse is not work sucsessful
+            //string genreText2 = "science";
+            //// Enum.Parse returns an 'object', so we must cast it to (Genre)
+            //Console.WriteLine();
+            //Genre parsedGenre2 = (Genre)Enum.Parse<Genre>(genreText2);
+            //Console.WriteLine($"String '{genreText2}' parsed to Enum: {parsedGenre2}");
+            //#endregion
+
             Console.WriteLine();
-            Genre parsedGenre2 = (Genre)Enum.Parse<Genre>(genreText2);
-            Console.WriteLine($"String '{genreText2}' parsed to Enum: {parsedGenre2}");
             #endregion
 
+            #region Q9: Safe String to Enum (Enum.TryParse)
+            Console.WriteLine("=== Q9: String to Enum Safely (Enum.TryParse) ===");
+            // Given string genreText = "Mystery"; use Enum.TryParse()
+            string invalidGenreText = "Mystery";
+
+            // TryParse does not throw exceptions. It returns true if successful, false if it fails.
+            // The result is output via the 'out' parameter.
+            bool isSuccess = Enum.TryParse(invalidGenreText, out Genre resultGenre);
+
+            if (isSuccess)
+            {
+                Console.WriteLine($"Successfully parsed: {resultGenre}");
+            }
+            else
+            {
+                Console.WriteLine("Unknown genre");
+            }
             Console.WriteLine();
             #endregion
 

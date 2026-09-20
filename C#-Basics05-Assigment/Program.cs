@@ -68,6 +68,21 @@ namespace Session5Assignment
             Console.WriteLine();
             #endregion
 
+            #region Q5: Enum to Int (Casting)
+            Console.WriteLine("=== Q5: Enum underlying int values ===");
+            // print the underlying int value by casting each to int.
+
+            int fictionVal = (int)Genre.Fiction;
+            int nonFictionVal = (int)Genre.NonFiction;
+            int scienceVal = (int)Genre.Science;
+
+
+            Console.WriteLine($"Genre.Fiction underlying value: {fictionVal}");
+            Console.WriteLine($"Genre.NonFiction underlying value: {nonFictionVal}");
+            Console.WriteLine($"Genre.Science underlying value: {scienceVal}");
+            Console.WriteLine();
+            #endregion
+
 
 
 

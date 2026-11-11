@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل الغوص العميق: محددات الوصول (Access Modifiers)، التغليف، وتشريح الـ Enums</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0b1120; --surface: #111827; --elevated: #1e293b; --border: #334155;
+  --text: #f8fafc; --muted: #94a3b8; --accent: #38bdf8; --accent-soft: rgba(56,189,248,0.12);
+  --good: #10b981; --good-soft: rgba(16,185,129,0.12);
+  --warn: #f59e0b; --warn-soft: rgba(245,158,11,0.12);
+  --code-bg: #070b14;
+  --font: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f1f5f9; --surface: #ffffff; --elevated: #f8fafc; --border: #cbd5e1;
+    --text: #0f172a; --muted: #475569; --accent: #0284c7; --accent-soft: rgba(2,132,199,0.1);
+    --good: #059669; --good-soft: rgba(5,150,105,0.1);
+    --warn: #d97706; --warn-soft: rgba(217,119,6,0.1);
+    --code-bg: #0f172a;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.9; font-size: 17px; padding: 2.5rem 1.25rem 5rem; }
+.container { max-width: 960px; margin: 0 auto; }
+.hero { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border-right: 5px solid var(--accent); }
+.badge { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); background: var(--accent-soft); padding: 0.25rem 0.7rem; border-radius: 6px; display: inline-block; margin-bottom: 0.6rem; direction: ltr; }
+h1 { font-size: 1.95rem; margin-bottom: 0.6rem; line-height: 1.35; }
+h2 { font-size: 1.4rem; color: var(--accent); margin: 2.2rem 0 0.9rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.12rem; margin: 1.3rem 0 0.4rem; }
+p { margin: 0.65rem 0; color: var(--text); }
+.lead { color: var(--muted); font-size: 1.05rem; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.35rem; margin: 1rem 0; }
+.note { padding: 1rem 1.2rem; border-radius: 10px; border-right: 4px solid var(--accent); background: var(--accent-soft); margin: 1rem 0; }
+.note.good { border-right-color: var(--good); background: var(--good-soft); }
+.note.warn { border-right-color: var(--warn); background: var(--warn-soft); }
+pre { direction: ltr; text-align: left; background: var(--code-bg); color: #e2e8f0; padding: 1.1rem 1.25rem; border-radius: 10px; overflow-x: auto; font-family: var(--mono); font-size: 0.86rem; line-height: 1.65; margin: 0.8rem 0; border: 1px solid var(--border); }
+code { font-family: var(--mono); font-size: 0.88em; direction: ltr; unicode-bidi: isolate; background: var(--elevated); padding: 0.1rem 0.4rem; border-radius: 4px; }
+pre code { background: none; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); font-size: 0.94rem; }
+th, td { padding: 0.75rem 1rem; text-align: right; border-bottom: 1px solid var(--border); }
+th { background: var(--elevated); color: var(--accent); font-weight: 700; }
+ul { padding-right: 1.4rem; margin: 0.6rem 0; }
+li { margin: 0.35rem 0; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">MODULE 01 • SESSION 05 • ACCESS MODIFIERS, ASSEMBLIES & ENUMS</span>
+      <h1>دليل الغوص العميق: محددات الوصول (Access Modifiers)، التغليف، وتشريح الـ Enums</h1>
+      <p class="lead">تحليل شامل لمستويات الحماية داخل وخارج الـ Assembly، وكيفية التعامل الاحترافي الآمن مع الـ Enum.</p>
+    </header>
+    <main>
+      
+        <h2>1. محددات الوصول (Access Modifiers) وحدود الـ Assembly (Q1 – Q3)</h2>
+        <table>
+          <thead>
+            <tr><th>المحدد (Modifier)</th><th>نطاق الرؤية (Visibility Scope)</th><th>التطبيق في كلاس <code>Book</code></th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>private</code> (Q1)</td><td>داخل نفس الكلاس أو الـ Struct فقط.</td><td>الحقل <code>private string password</code> محمي تماماً ولا يمكن قراءته من <code>Main</code> (Compile-Time Error).</td></tr>
+            <tr><td><code>internal</code> (Q2)</td><td>داخل نفس الـ Assembly (المشروع / ملف الـ <code>.dll</code> أو <code>.exe</code>) فقط.</td><td>الحقل <code>internal int copiesInStock</code> يعمل في <code>Main</code> لأنهما في نفس المشروع.</td></tr>
+            <tr><td><code>public</code> (Q3)</td><td>متاح للوصول من أي مكان داخل أو خارج الـ Assembly.</td><td>الخاصية <code>public string Title { get; set; }</code> تشكل الواجهة العلنية للكلاس.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>2. تشريح الـ Enum والتحويلات الآمنة (Q4 – Q9)</h2>
+        <div class="card">
+          <p>الـ <code>enum Genre { Fiction, NonFiction, Science }</code> هو Value Type يعتمد تحت السطح افتراضياً على نوع صحيح <code>int</code> (حيث <code>Fiction = 0</code>، <code>NonFiction = 1</code>، <code>Science = 2</code>) ولا يستهلك أي حجز في الـ Heap إلا عند عمل Boxing.</p>
+          <ul>
+            <li><strong>التحويل بين <code>Enum</code> و <code>int</code> (Q5 &amp; Q6):</strong> يتم عبر Explicit Cast مباشر مثل <code>(int)Genre.Science</code> أو <code>(Genre)1</code> بتكلفة صفرية في وقت التشغيل.</li>
+            <li><strong>تحويل النص إلى Enum بأمان (Q8 vs Q9):</strong> استخدام <code>Enum.Parse&lt;Genre&gt;(text)</code> يرمي استثناء <code>ArgumentException</code> إذا كان النص غير معروف (مثل <code>"Mystery"</code> أو اختلاف حالة الأحرف بدون IgnoreCase)، بينما <code>Enum.TryParse(invalidGenreText, out Genre result)</code> يحمي التطبيق من الانهيار ويعيد <code>false</code> بأمان.</li>
+          </ul>
+        </div>
+        
+    </main>
+  </div>
+</body>
+</html>
